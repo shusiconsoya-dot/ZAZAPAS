@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .bg-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(44, 44, 44, 0.4);
+    backdrop-filter: blur(20px);
+  }
+
+  .kinetic-glow {
+    box-shadow: 0 0 40px rgba(255, 145, 89, 0.1);
+  }
+
+  .text-glow-primary {
+    text-shadow: 0 0 12px rgba(255, 145, 89, 0.5);
+  }
+
+  .vibrant-glow {
+    box-shadow: 0 0 25px rgba(25, 120, 229, 0.4);
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    user-select: none;
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+  }
+}
