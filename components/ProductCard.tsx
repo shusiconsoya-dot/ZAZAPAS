@@ -22,7 +22,7 @@ export function ProductCard({ product }: { product: Product }) {
       {/* Badge */}
       {badge && (
         <div className="absolute top-4 left-4 z-20">
-          <Badge color={badge.color}>{badge.text}</Badge>
+          <Badge variant={badge.color as "primary" | "secondary" | "tertiary"}>{badge.text}</Badge>
         </div>
       )}
 
