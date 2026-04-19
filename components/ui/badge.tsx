@@ -1,31 +1,29 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const badgeVariants = cva(
-  "inline-flex items-center px-2 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-md border",
-  {
-    variants: {
-      variant: {
-        primary: "bg-primary/20 text-primary border-primary/30",
-        secondary: "bg-secondary/20 text-secondary border-secondary/30",
-        tertiary: "bg-tertiary/20 text-tertiary border-tertiary/30",
-      },
-    },
-    defaultVariants: {
-      variant: "primary",
-    },
-  }
-);
+type BadgeVariant = "primary" | "secondary" | "tertiary";
 
-export interface BadgeProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof badgeVariants> {}
+const variantClasses: Record<BadgeVariant, string> = {
+  primary: "bg-primary/20 text-primary border-primary/30",
+  secondary: "bg-secondary/20 text-secondary border-secondary/30",
+  tertiary: "bg-tertiary/20 text-tertiary border-tertiary/30",
+};
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  variant?: BadgeVariant;
+}
+
+function Badge({ className, variant = "primary", ...props }: BadgeProps) {
   return (
-    <span className={cn(badgeVariants({ variant }), className)} {...props} />
+    <span
+      className={cn(
+        "inline-flex items-center px-2 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-md border",
+        variantClasses[variant],
+        className
+      )}
+      {...props}
+    />
   );
 }
 
-export { Badge, badgeVariants };
+export { Badge };
