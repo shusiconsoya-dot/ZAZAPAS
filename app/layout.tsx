@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/lib/cart-context";
+import { Navbar } from "@/components/Navbar";
+import { CartBubble } from "@/components/CartBubble";
+import { CartPanel } from "@/components/CartPanel";
+import { Footer } from "@/components/Footer";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -28,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="es" className="dark">
       <head>
         <link
           rel="stylesheet"
@@ -38,7 +43,13 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary-fixed antialiased`}
       >
-        {children}
+        <CartProvider>
+          <Navbar />
+          <CartBubble />
+          <CartPanel />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

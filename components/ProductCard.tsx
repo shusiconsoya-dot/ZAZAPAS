@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Icon } from "@/components/Icon";
@@ -15,10 +16,23 @@ const glowClass: Record<Product["glowColor"], string> = {
 
 export function ProductCard({ product }: { product: Product }) {
   const { dispatch } = useCart();
-  const { name, price, series, image, imageAlt, rotateOnHover, glowColor, badge } = product;
+  const router = useRouter();
+  const { id, name, price, series, image, imageAlt, rotateOnHover, glowColor, badge } = product;
+
+  const handleCardClick = () => {
+    router.push(`/producto/${id}`);
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    dispatch({ type: "ADD", product });
+  };
 
   return (
-    <article className="group relative bg-surface-container-high rounded-xl p-6 transition-all duration-500 ease-out hover:bg-surface-variant hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.45)] border border-outline-variant/10 hover:border-outline-variant/25">
+    <article
+      onClick={handleCardClick}
+      className="group relative bg-surface-container-high rounded-xl p-6 transition-all duration-500 ease-out hover:bg-surface-variant hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.45)] border border-outline-variant/10 hover:border-outline-variant/25 cursor-pointer"
+    >
       {/* Badge */}
       {badge && (
         <div className="absolute top-4 left-4 z-20">
@@ -56,9 +70,9 @@ export function ProductCard({ product }: { product: Product }) {
         </p>
       </div>
 
-      {/* Add to cart */}
+      {/* Quick add to cart */}
       <button
-        onClick={() => dispatch({ type: "ADD", product })}
+        onClick={handleAddToCart}
         className="absolute bottom-6 right-6 w-12 h-12 rounded-full bg-secondary text-on-secondary flex items-center justify-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out hover:scale-110 active:scale-95"
         aria-label={`Añadir ${name} a la cesta`}
       >

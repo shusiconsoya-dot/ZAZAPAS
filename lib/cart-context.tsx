@@ -6,6 +6,7 @@ import type { Product } from "./data";
 export interface CartItem {
   product: Product;
   quantity: number;
+  size?: string;
 }
 
 interface CartState {
@@ -14,29 +15,36 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: "ADD"; product: Product }
-  | { type: "REMOVE"; productId: number }
+  | { type: "ADD"; product: Product; size?: string }
+  | { type: "REMOVE"; productId: number; size?: string }
   | { type: "TOGGLE" }
   | { type: "CLOSE" };
 
 function reducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case "ADD": {
-      const existing = state.items.find((i) => i.product.id === action.product.id);
+      const existing = state.items.find(
+        (i) => i.product.id === action.product.id && i.size === action.size
+      );
       return {
         ...state,
         isOpen: true,
         items: existing
           ? state.items.map((i) =>
-              i.product.id === action.product.id
+              i.product.id === action.product.id && i.size === action.size
                 ? { ...i, quantity: i.quantity + 1 }
                 : i
             )
-          : [...state.items, { product: action.product, quantity: 1 }],
+          : [...state.items, { product: action.product, quantity: 1, size: action.size }],
       };
     }
     case "REMOVE":
-      return { ...state, items: state.items.filter((i) => i.product.id !== action.productId) };
+      return {
+        ...state,
+        items: state.items.filter(
+          (i) => !(i.product.id === action.productId && i.size === action.size)
+        ),
+      };
     case "TOGGLE":
       return { ...state, isOpen: !state.isOpen };
     case "CLOSE":

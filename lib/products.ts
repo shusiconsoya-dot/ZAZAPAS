@@ -12,6 +12,14 @@ export const products: Product[] = [
     rotateOnHover: "cw",
     glowColor: "primary",
     badge: { text: "98% Quality Match", color: "primary" },
+    sizes: [
+      { label: "EU 39", inStock: true },
+      { label: "EU 40", inStock: true },
+      { label: "EU 41", inStock: true },
+      { label: "EU 42", inStock: false },
+      { label: "EU 43", inStock: true },
+      { label: "EU 44", inStock: false },
+    ],
   },
   {
     id: 2,
@@ -22,6 +30,14 @@ export const products: Product[] = [
     imageAlt: "Asics Gel Kayano 14 White Midnight",
     rotateOnHover: "ccw",
     glowColor: "tertiary",
+    sizes: [
+      { label: "EU 38", inStock: true },
+      { label: "EU 39", inStock: true },
+      { label: "EU 40", inStock: true },
+      { label: "EU 41", inStock: false },
+      { label: "EU 42", inStock: true },
+      { label: "EU 43", inStock: true },
+    ],
   },
   {
     id: 3,
@@ -33,6 +49,15 @@ export const products: Product[] = [
     rotateOnHover: "cw",
     glowColor: "secondary",
     badge: { text: "95% Quality Match", color: "secondary" },
+    sizes: [
+      { label: "EU 38", inStock: false },
+      { label: "EU 39", inStock: true },
+      { label: "EU 40", inStock: true },
+      { label: "EU 41", inStock: true },
+      { label: "EU 42", inStock: false },
+      { label: "EU 43", inStock: true },
+      { label: "EU 44", inStock: true },
+    ],
   },
   {
     id: 4,
@@ -43,6 +68,14 @@ export const products: Product[] = [
     imageAlt: "Louis Vuitton LV Trainer Denim Sneaker",
     rotateOnHover: "ccw",
     glowColor: "primary",
+    sizes: [
+      { label: "EU 39", inStock: true },
+      { label: "EU 40", inStock: false },
+      { label: "EU 41", inStock: true },
+      { label: "EU 42", inStock: true },
+      { label: "EU 43", inStock: true },
+      { label: "EU 44", inStock: false },
+    ],
   },
   {
     id: 5,
@@ -54,6 +87,14 @@ export const products: Product[] = [
     rotateOnHover: "cw",
     glowColor: "tertiary",
     badge: { text: "99% Quality Match", color: "tertiary" },
+    sizes: [
+      { label: "EU 39", inStock: true },
+      { label: "EU 40", inStock: true },
+      { label: "EU 41", inStock: true },
+      { label: "EU 42", inStock: true },
+      { label: "EU 43", inStock: false },
+      { label: "EU 44", inStock: false },
+    ],
   },
   {
     id: 6,
@@ -64,6 +105,14 @@ export const products: Product[] = [
     imageAlt: "Nocta Hot Step Orange Sneaker",
     rotateOnHover: "ccw",
     glowColor: "primary",
+    sizes: [
+      { label: "EU 38", inStock: true },
+      { label: "EU 39", inStock: false },
+      { label: "EU 40", inStock: true },
+      { label: "EU 41", inStock: true },
+      { label: "EU 42", inStock: true },
+      { label: "EU 43", inStock: false },
+    ],
   },
   {
     id: 7,
@@ -75,6 +124,15 @@ export const products: Product[] = [
     rotateOnHover: "cw",
     glowColor: "primary",
     badge: { text: "92% Quality Match", color: "primary" },
+    sizes: [
+      { label: "EU 38", inStock: true },
+      { label: "EU 39", inStock: true },
+      { label: "EU 40", inStock: true },
+      { label: "EU 41", inStock: true },
+      { label: "EU 42", inStock: false },
+      { label: "EU 43", inStock: false },
+      { label: "EU 44", inStock: true },
+    ],
   },
   {
     id: 8,
@@ -85,5 +143,6 @@ export const products: Product[] = [
     imageAlt: "Prism Core Sneaker",
     rotateOnHover: "ccw",
     glowColor: "tertiary",
+    sizes: [],
   },
 ];

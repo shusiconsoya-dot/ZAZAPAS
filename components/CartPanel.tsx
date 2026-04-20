@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCart } from "@/lib/cart-context";
 import { Icon } from "@/components/Icon";
 import { cn } from "@/lib/utils";
@@ -62,9 +63,9 @@ export function CartPanel() {
               </p>
             </div>
           ) : (
-            items.map(({ product, quantity }) => (
+            items.map(({ product, quantity, size }) => (
               <div
-                key={product.id}
+                key={`${product.id}-${size ?? "nosize"}`}
                 className="flex gap-3 items-center bg-surface-container rounded-xl p-3 border border-outline-variant/10"
               >
                 {/* Thumbnail */}
@@ -82,7 +83,10 @@ export function CartPanel() {
                   <p className="font-headline font-bold text-sm uppercase truncate leading-tight">
                     {product.name}
                   </p>
-                  <p className="text-on-surface-variant text-xs mt-1">${product.price}</p>
+                  {size && (
+                    <p className="text-on-surface-variant text-xs mt-0.5 font-body">{size}</p>
+                  )}
+                  <p className="text-on-surface-variant text-xs mt-0.5">${product.price}</p>
                   <p className="text-primary font-bold text-xs font-headline mt-0.5">
                     ×{quantity}
                   </p>
@@ -90,7 +94,7 @@ export function CartPanel() {
 
                 {/* Remove */}
                 <button
-                  onClick={() => dispatch({ type: "REMOVE", productId: product.id })}
+                  onClick={() => dispatch({ type: "REMOVE", productId: product.id, size })}
                   className="p-1.5 rounded-full hover:bg-error/20 text-on-surface-variant hover:text-error transition-all flex-shrink-0"
                   aria-label={`Eliminar ${product.name}`}
                 >
@@ -110,9 +114,13 @@ export function CartPanel() {
                 ${total.toLocaleString()}
               </span>
             </div>
-            <button className="w-full bg-primary text-on-primary-fixed font-headline font-bold uppercase tracking-tight py-4 rounded-full hover:bg-primary-dim transition-all active:scale-95 shadow-[0_8px_24px_rgba(255,145,89,0.3)]">
+            <Link
+              href="/checkout"
+              onClick={() => dispatch({ type: "CLOSE" })}
+              className="w-full bg-primary text-on-primary-fixed font-headline font-bold uppercase tracking-tight py-4 rounded-full hover:bg-primary-dim transition-all active:scale-95 shadow-[0_8px_24px_rgba(255,145,89,0.3)] flex items-center justify-center"
+            >
               Finalizar compra
-            </button>
+            </Link>
           </div>
         )}
       </aside>

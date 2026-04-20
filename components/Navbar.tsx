@@ -10,13 +10,14 @@ const navLinks = [
   { label: "Drops", href: "#", active: true },
   { label: "Performance", href: "#" },
   { label: "Exclusives", href: "#" },
-  { label: "Vault", href: "#" },
+  { label: "Vault", href: "#", isVault: true },
 ];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
+  const [vaultOpen, setVaultOpen] = useState(false);
   const { state, dispatch } = useCart();
   const cartCount = state.items.reduce((s, { quantity }) => s + quantity, 0);
 
@@ -42,7 +43,7 @@ export function Navbar() {
       >
         {/* Logo */}
         <a
-          href="#"
+          href="/"
           className="text-2xl font-black italic text-orange-400 tracking-widest hover:opacity-80 transition-opacity"
           aria-label="Zazapas home"
         >
@@ -51,20 +52,30 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex gap-8 items-center" aria-label="Main navigation">
-          {navLinks.map(({ label, href, active }) => (
-            <a
-              key={label}
-              href={href}
-              className={cn(
-                "transition-all text-sm",
-                active
-                  ? "text-orange-400 font-bold border-b-2 border-orange-400 pb-0.5"
-                  : "text-zinc-400 hover:text-white"
-              )}
-            >
-              {label}
-            </a>
-          ))}
+          {navLinks.map(({ label, href, active, isVault }) =>
+            isVault ? (
+              <button
+                key={label}
+                onClick={() => setVaultOpen(true)}
+                className="transition-all text-sm text-zinc-400 hover:text-white"
+              >
+                {label}
+              </button>
+            ) : (
+              <a
+                key={label}
+                href={href}
+                className={cn(
+                  "transition-all text-sm",
+                  active
+                    ? "text-orange-400 font-bold border-b-2 border-orange-400 pb-0.5"
+                    : "text-zinc-400 hover:text-white"
+                )}
+              >
+                {label}
+              </a>
+            )
+          )}
         </nav>
 
         {/* Actions */}
@@ -109,25 +120,69 @@ export function Navbar() {
             className="absolute top-full mt-3 left-0 right-0 glass-panel rounded-2xl p-6 flex flex-col gap-4 md:hidden border border-outline-variant/20"
             aria-label="Mobile navigation"
           >
-            {navLinks.map(({ label, href, active }) => (
-              <a
-                key={label}
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                className={cn(
-                  "py-2 text-base transition-colors",
-                  active ? "text-orange-400 font-bold" : "text-zinc-400 hover:text-white"
-                )}
-              >
-                {label}
-              </a>
-            ))}
+            {navLinks.map(({ label, href, active, isVault }) =>
+              isVault ? (
+                <button
+                  key={label}
+                  onClick={() => {
+                    setMenuOpen(false);
+                    setVaultOpen(true);
+                  }}
+                  className="py-2 text-base transition-colors text-zinc-400 hover:text-white text-left"
+                >
+                  {label}
+                </button>
+              ) : (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className={cn(
+                    "py-2 text-base transition-colors",
+                    active ? "text-orange-400 font-bold" : "text-zinc-400 hover:text-white"
+                  )}
+                >
+                  {label}
+                </a>
+              )
+            )}
           </nav>
         )}
       </header>
 
       {/* Auth modal */}
       {authOpen && <AuthModal onClose={() => setAuthOpen(false)} />}
+
+      {/* Vault overlay */}
+      {vaultOpen && (
+        <div
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/65 backdrop-blur-md"
+          onClick={() => setVaultOpen(false)}
+        >
+          <div
+            className="glass-panel rounded-3xl px-12 py-14 max-w-sm w-full mx-6 text-center relative border border-outline-variant/20 shadow-[0_0_60px_rgba(255,145,89,0.12)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setVaultOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-surface-variant transition-colors text-on-surface-variant hover:text-on-surface"
+              aria-label="Cerrar"
+            >
+              <Icon name="close" size={20} />
+            </button>
+
+            <p className="font-headline text-[10px] uppercase tracking-[0.4em] text-on-surface-variant mb-4">
+              Vault
+            </p>
+            <h2 className="font-headline text-5xl font-black uppercase tracking-tight text-primary text-glow-primary">
+              Próximamente
+            </h2>
+            <p className="font-body text-sm text-on-surface-variant mt-5 leading-relaxed">
+              Algo exclusivo está en camino.<br />Estate muy atento.
+            </p>
+          </div>
+        </div>
+      )}
     </>
   );
 }

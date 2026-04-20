@@ -1,6 +1,11 @@
 export type BadgeColor = "primary" | "secondary" | "tertiary";
 export type GlowColor = "primary" | "secondary" | "tertiary";
 
+export interface SizeOption {
+  label: string;
+  inStock: boolean;
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -11,6 +16,7 @@ export interface Product {
   rotateOnHover: "cw" | "ccw";
   glowColor: GlowColor;
   badge?: { text: string; color: BadgeColor };
+  sizes: SizeOption[];
 }
 
 export interface TeamMember {
