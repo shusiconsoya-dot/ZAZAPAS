@@ -36,7 +36,7 @@ export const teamMembers: TeamMember[] = [
     role: "Lead Synthesizer",
     image: TEAM_IMG,
     imageAlt: "Yasser - Lead Synthesizer",
-    offsetX: "28%",
+    offsetX: "-150%",
     offsetY: "-17%",
   },
   {
@@ -44,7 +44,7 @@ export const teamMembers: TeamMember[] = [
     role: "Motion Architect",
     image: TEAM_IMG,
     imageAlt: "Maryem - Motion Architect",
-    offsetX: "-122%",
+    offsetX: "-78%",
     offsetY: "-3%",
   },
   {
@@ -52,7 +52,7 @@ export const teamMembers: TeamMember[] = [
     role: "System Dev",
     image: TEAM_IMG,
     imageAlt: "Mehdi - System Dev",
-    offsetX: "-278%",
+    offsetX: "-3%",
     offsetY: "-17%",
   },
   {
@@ -60,15 +60,15 @@ export const teamMembers: TeamMember[] = [
     role: "Color Strategist",
     image: TEAM_IMG,
     imageAlt: "Jennifer - Color Strategist",
-    offsetX: "-37%",
-    offsetY: "-160%",
+    offsetX: "-20%",
+    offsetY: "-115%",
   },
   {
     name: "Sara",
     role: "Head of Labs",
     image: TEAM_IMG,
     imageAlt: "Sara - Head of Labs",
-    offsetX: "-203%",
-    offsetY: "-158%",
+    offsetX: "-130%",
+    offsetY: "-115%",
   },
 ];
