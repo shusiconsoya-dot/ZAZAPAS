@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
+import Link from "next/link";
 
 const INFLUENCER_IMGS = [
   {
@@ -94,6 +95,21 @@ export function SocialProof() {
           </div>
           </RevealOnScroll>
         </div>
+
+        {/* Ver justificación */}
+        <RevealOnScroll variant="fade-up" delay={300}>
+          <div className="mt-14 flex justify-center">
+            <Link
+              href="/justificacion"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-headline font-bold text-sm uppercase tracking-tighter glass-card border border-outline-variant/25 text-primary hover:bg-primary/10 hover:border-primary/40 hover:scale-[1.02] active:scale-[0.97] transition-all duration-200 hover:shadow-[0_0_20px_rgba(255,145,89,0.15)]"
+            >
+              Ver justificación
+              <Icon name="open_in_new" size={16} />
+            </Link>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

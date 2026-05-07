@@ -16,8 +16,22 @@
 
 @layer components {
   .glass-panel {
-    background: rgba(44, 44, 44, 0.4);
+    background: rgba(44, 44, 44, 0.45);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.028);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-surface {
+    background: rgba(20, 18, 18, 0.58);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(255, 145, 89, 0.1);
   }
 
   .kinetic-glow {
