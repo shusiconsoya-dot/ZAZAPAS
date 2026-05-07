@@ -39,8 +39,8 @@ export function TeamSection() {
                   alt={member.imageAlt}
                   className="absolute max-w-none object-cover"
                   style={{
-                    width: "280%",
-                    height: "280%",
+                    width: "350%",
+                    height: "350%",
                     left: member.offsetX,
                     top: member.offsetY,
                   }}
