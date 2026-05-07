@@ -1,71 +1,86 @@
+"use client";
+
+import { useState } from "react";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
-import { Icon } from "@/components/Icon";
 
 const QUOTES = [
   {
-    type: "Metáfora",
-    text: '"No son solo zapatillas, son tu carta de presentación."',
+    text: "No son solo zapatillas, son tu carta de presentación.",
     icon: "auto_awesome",
-    note: "Compara las zapatillas con algo de mayor carga simbólica para elevar su valor percibido.",
   },
   {
-    type: "Hipérbole",
-    text: '"Diseñadas para que cada paso deje huella."',
+    text: "Diseñadas para que cada paso deje huella.",
     icon: "trending_up",
-    note: "Exagera el efecto del producto para generar un mayor impacto emocional en el lector.",
   },
   {
-    type: "Anáfora",
-    text: '"Para correr. Para destacar. Para llegar más lejos."',
+    text: "Para correr. Para destacar. Para llegar más lejos.",
     icon: "repeat",
-    note: 'Repite "Para" al inicio de cada frase creando ritmo, énfasis y sensación de progresión.',
   },
 ];
 
 export function RhetoricalQuotes() {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
   return (
-    <section className="py-28 px-8 bg-surface-container relative overflow-hidden">
+    <section className="py-24 px-8 bg-surface-container relative overflow-hidden">
       <div
         className="absolute inset-0 bg-radial from-primary/10 via-transparent to-transparent pointer-events-none"
         aria-hidden="true"
       />
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         <RevealOnScroll variant="fade-up">
-          <p className="font-headline tracking-[0.35em] uppercase text-primary/70 text-xs text-center mb-14 flex items-center justify-center gap-4">
+          <p className="font-headline tracking-[0.35em] uppercase text-primary/60 text-xs mb-16 flex items-center gap-4">
             <span className="w-10 h-px bg-primary/40" />
             Lenguaje que conecta
-            <span className="w-10 h-px bg-primary/40" />
           </p>
         </RevealOnScroll>
 
-        <div className="flex flex-col gap-5">
-          {QUOTES.map((q, i) => (
-            <RevealOnScroll key={q.type} variant="fade-up" delay={i * 120}>
-              <div className="group glass-card border border-outline-variant/20 rounded-2xl p-7 flex items-center gap-6 cursor-default transition-all duration-500 hover:border-primary/20 hover:shadow-[0_0_30px_rgba(255,145,89,0.08)]">
-                {/* Icon */}
-                <div className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center border border-outline-variant/30 group-hover:border-primary/40 bg-surface-variant/50 group-hover:bg-primary/10 transition-all duration-500">
-                  <Icon
-                    name={q.icon}
-                    size={20}
-                    className="text-on-surface-variant group-hover:text-primary transition-colors duration-500"
-                  />
-                </div>
+        <div className="flex items-stretch gap-10 md:gap-16">
+          {/* Left — big quotes */}
+          <div className="flex-1 flex flex-col justify-center gap-10">
+            {QUOTES.map((q, i) => (
+              <RevealOnScroll key={i} variant="fade-left" delay={i * 120}>
+                <p
+                  className={`font-headline text-3xl md:text-5xl lg:text-6xl font-black leading-tight cursor-default transition-all duration-500 origin-left select-none ${
+                    hoveredIdx === i
+                      ? "blur-none scale-[1.02] text-on-surface"
+                      : "blur text-on-surface"
+                  }`}
+                  onMouseEnter={() => setHoveredIdx(i)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                >
+                  &ldquo;{q.text}&rdquo;
+                </p>
+              </RevealOnScroll>
+            ))}
+          </div>
 
-                <div className="flex-1 min-w-0">
-                  <span className="font-headline text-[10px] tracking-[0.35em] uppercase text-primary/50 group-hover:text-primary/80 transition-colors duration-500">
-                    {q.type}
-                  </span>
-                  <p className="font-headline text-xl md:text-2xl font-black mt-1 text-on-surface blur group-hover:blur-none group-hover:scale-[1.01] transition-all duration-500 origin-left">
-                    {q.text}
-                  </p>
-                  <p className="font-body text-sm text-on-surface-variant mt-2 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-500">
-                    {q.note}
-                  </p>
-                </div>
+          {/* Right — tall icon that changes on hover */}
+          <div className="hidden lg:block flex-shrink-0 w-52 relative">
+            {QUOTES.map((q, i) => (
+              <div
+                key={q.icon}
+                className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+                  hoveredIdx === i
+                    ? "opacity-100 scale-100"
+                    : hoveredIdx === null && i === 0
+                    ? "opacity-15 scale-95"
+                    : "opacity-0 scale-90"
+                }`}
+                aria-hidden="true"
+              >
+                <span
+                  className={`material-symbols-outlined leading-none select-none transition-colors duration-500 ${
+                    hoveredIdx === i ? "text-primary" : "text-primary/30"
+                  }`}
+                  style={{ fontSize: "210px" }}
+                >
+                  {q.icon}
+                </span>
               </div>
-            </RevealOnScroll>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
