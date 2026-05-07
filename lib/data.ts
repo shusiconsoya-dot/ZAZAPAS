@@ -28,8 +28,7 @@ export interface TeamMember {
   offsetY: string;
 }
 
-const TEAM_IMG =
-  "https://lh3.googleusercontent.com/aida/ADBb0ugyTqY_ISY2ioMOAiwuS4v3vtUQH9kVADHyL6W5dlTIqE84jljXEjyt3SQD6h7sCRFhuHKaxNPmdYpupfulbnWtn5yuTFtx14pl-Al7vM0GKBQFIbrYe1PevqLMYNNFnK3CuEboy6OCXPRNcIVpfRvujczxKOz-TEaNRVFui127dZuz7hhYc0nBT05sabHTGoNbENy-joLhnggyVW2d_alPv3PbbvHaSMb3b5u5XDALbN7LHNK7OWEnfmk";
+const TEAM_IMG = "/team.png.png";
 
 export const teamMembers: TeamMember[] = [
   {
@@ -37,8 +36,8 @@ export const teamMembers: TeamMember[] = [
     role: "Lead Synthesizer",
     image: TEAM_IMG,
     imageAlt: "Yasser - Lead Synthesizer",
-    offsetX: "-20%",
-    offsetY: "-28%",
+    offsetX: "30%",
+    offsetY: "-1%",
   },
   {
     name: "Maryem",
@@ -46,30 +45,30 @@ export const teamMembers: TeamMember[] = [
     image: TEAM_IMG,
     imageAlt: "Maryem - Motion Architect",
     offsetX: "-90%",
-    offsetY: "-28%",
+    offsetY: "6%",
   },
   {
     name: "Mehdi",
     role: "System Dev",
     image: TEAM_IMG,
     imageAlt: "Mehdi - System Dev",
-    offsetX: "-165%",
-    offsetY: "-28%",
+    offsetX: "-210%",
+    offsetY: "-1%",
   },
   {
     name: "Jennifer",
     role: "Color Strategist",
     image: TEAM_IMG,
     imageAlt: "Jennifer - Color Strategist",
-    offsetX: "-40%",
-    offsetY: "-110%",
+    offsetX: "-19%",
+    offsetY: "-118%",
   },
   {
     name: "Sara",
     role: "Head of Labs",
     image: TEAM_IMG,
     imageAlt: "Sara - Head of Labs",
-    offsetX: "-140%",
-    offsetY: "-110%",
+    offsetX: "-148%",
+    offsetY: "-116%",
   },
 ];
